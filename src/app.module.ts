@@ -13,7 +13,7 @@ import { MovieController } from './movie/movie.controller';
       database: 'outsera.db',
       synchronize: true,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      dropSchema: true,
+      dropSchema: false,
     }),
     MoviesModule,
   ],

@@ -18,7 +18,6 @@ export class MovieController {
 
   @Get('prize-range')
   prizeRange(): Promise<Movie[]> {
-    console.log('Acessando a rota prize-range...');
     return this.movieService.prizeRange();
   }
 

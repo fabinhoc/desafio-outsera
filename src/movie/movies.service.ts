@@ -48,7 +48,6 @@ export class MoviesService {
         year: 'ASC',
       },
     });
-
     const result = {
       min: [],
       max: [],
@@ -82,7 +81,19 @@ export class MoviesService {
         }
 
         if (interval > 1) {
-          result.max.push(resultEntry);
+          const findProducer = result.max.find(
+            (prod) => prod.producer === resultEntry.producer,
+          );
+
+          if (!findProducer) {
+            result.max.push(resultEntry);
+          } else if (findProducer.interval < resultEntry.interval) {
+            const index = result.max.findIndex(
+              (prod) => prod.producer === resultEntry.producer,
+            );
+
+            result.max[index] = resultEntry;
+          }
         }
       }
     });
@@ -91,8 +102,8 @@ export class MoviesService {
     result.max.sort((a, b) => b.interval - a.interval);
 
     return {
-      min: result.min.slice(0, 2),
-      max: result.max.slice(0, 1),
+      min: result.min,
+      max: result.max,
     };
   }
 

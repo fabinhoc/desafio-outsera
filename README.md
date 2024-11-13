@@ -55,7 +55,8 @@ $ yarn run start:prod
 # unit tests
 $ yarn run test
 
-# e2e tests
+# e2e tests - executed only into docker container
+$ docker exec -it app bash
 $ yarn run test:e2e
 
 # test coverage
