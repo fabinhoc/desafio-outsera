@@ -24,8 +24,21 @@
 
 ## Descrição
 
-Desenvolva uma API RESTful para possibilitar a leitura da lista de indicados e vencedores
-da categoria Pior Filme do Golden Raspberry Awards.
+#### Desenvolva uma API RESTful para possibilitar a leitura da lista de indicados e vencedores da categoria Pior Filme do Golden Raspberry Awards.
+
+A aplicação por padrão ao inicializar irá popular dados vindo do arquivo csv contido na pasta src/data/movies.csv
+
+A rota GET http://localhost:3000/movies/prize-range é o resultado esperado do desafio.
+
+## Tecnologias e pacotes utilizados no projeto
+
+- Nestjs
+- Sqlite 3
+- csv-parser
+- typeorm
+- eslint
+- prettier
+- jest
 
 ## Instalação
 
@@ -77,6 +90,10 @@ DELETE http://localhost:3000/movies/:id
 GET http://localhost:3000/movies/prize-range
 
 ```
+
+# Utilize o Insomnia
+
+Faça a importação no insomnia do arquivo [movies-endpoint.json](https://github.com/fabinhoc/desafio-outsera/blob/main/movies-endpoints.json)
 
 # e2e tests
 
