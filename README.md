@@ -31,6 +31,7 @@ da categoria Pior Filme do Golden Raspberry Awards.
 
 ```bash
 $ git clone git@github.com:fabinhoc/desafio-outsera.git
+$ cd desafio-outsera
 $ docker compose up
 
 ```
