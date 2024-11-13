@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './movies.entity';
 import { Repository } from 'typeorm';
 import { CreateMovieDto } from './create-movies.dto';
+import { UpdateMovieDto } from './update-movies.dto';
 
 @Injectable()
 export class MoviesService {
@@ -31,6 +32,13 @@ export class MoviesService {
   create(payload: CreateMovieDto): Promise<Movie> {
     const movie = this.movieRepository.create(payload);
     return this.movieRepository.save(movie);
+  }
+
+  async update(id: number, payload: UpdateMovieDto): Promise<Movie> {
+    await this.movieRepository.update(id, payload);
+    return await this.movieRepository.findOne({
+      where: { id },
+    });
   }
 
   async prizeRange(): Promise<any> {
@@ -86,5 +94,9 @@ export class MoviesService {
       min: result.min.slice(0, 2),
       max: result.max.slice(0, 1),
     };
+  }
+
+  remove(id: number) {
+    return this.movieRepository.delete(id);
   }
 }
