@@ -36,7 +36,7 @@ $ docker compose up
 
 Acessar `http://localhost:3000`
 
-## Compile and run the project
+## Compilar e executar o projeto
 
 ```bash
 # development
@@ -49,7 +49,7 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Run tests
+## Executar testes
 
 ```bash
 # unit tests
@@ -83,7 +83,10 @@ Faça a importação no insomnia do arquivo [movies-endpoint.json](https://githu
 
 # e2e tests
 
+```
+$ docker exec -it app bash
 $ yarn run test:e2e
+```
 
 # test coverage
 
