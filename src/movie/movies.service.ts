@@ -47,6 +47,9 @@ export class MoviesService {
         producer: 'ASC',
         year: 'ASC',
       },
+      where: {
+        winner: 'yes',
+      },
     });
     const result = {
       min: [],
@@ -77,23 +80,26 @@ export class MoviesService {
         };
 
         if (interval === 1) {
-          result.min.push(resultEntry);
+          result.min = [resultEntry];
         }
 
-        if (interval > 1) {
-          const findProducer = result.max.find(
+        const findProducer = result.max.find(
+          (prod) => prod.producer === resultEntry.producer,
+        );
+
+        if (!findProducer) {
+          result.max.push({
+            interval: resultEntry.interval,
+            producer: resultEntry.producer,
+            previousWin: parseInt(prevMovie.year),
+            followingWin: parseInt(currentMovie.year),
+          });
+        } else if (findProducer.interval < resultEntry.interval) {
+          const index = result.max.findIndex(
             (prod) => prod.producer === resultEntry.producer,
           );
 
-          if (!findProducer) {
-            result.max.push(resultEntry);
-          } else if (findProducer.interval < resultEntry.interval) {
-            const index = result.max.findIndex(
-              (prod) => prod.producer === resultEntry.producer,
-            );
-
-            result.max[index] = resultEntry;
-          }
+          result.max[index] = resultEntry;
         }
       }
     });
@@ -103,7 +109,7 @@ export class MoviesService {
 
     return {
       min: result.min,
-      max: result.max,
+      max: [result.max[0]],
     };
   }
 

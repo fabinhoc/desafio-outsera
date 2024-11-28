@@ -22,14 +22,18 @@ export class AppService {
           }),
         )
         .on('data', (row) => {
-          const movie: CreateMovieDto = {
-            title: row.title,
-            year: row.year,
-            studio: row.studios,
-            producer: row.producers,
-            winner: row.winner,
-          };
-          movies.push(movie);
+          const producers = row.producers.replace(/\band\b/g, ',');
+          const producersByArray = producers.split(',');
+          producersByArray.forEach((item) => {
+            const movie: CreateMovieDto = {
+              title: row.title,
+              year: row.year,
+              studio: row.studios,
+              producer: item.trim(),
+              winner: row.winner,
+            };
+            movies.push(movie);
+          });
         })
         .on('end', async () => {
           await this.moviesService.createMany(movies);

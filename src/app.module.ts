@@ -10,7 +10,7 @@ import { MovieController } from './movie/movie.controller';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'outsera.db',
+      database: ':memory:',
       synchronize: true,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       dropSchema: false,
